@@ -1,0 +1,14 @@
+{
+  "id": "01a15e2d-c3ae-76d9-b89a-63b440efc703",
+  "version": "2026-10-21",
+  "name": "One-page site",
+  "shortDescription": "A one-page personal site from your name, a tagline, and your links.",
+  "description": "Writes a one-page personal site from your name, a tagline, up to eight links, and up to four short sections, in one of three themes: plain, night, or paper. The page is one folder of files you can open, serve, or copy to any static host. Nothing leaves your computer.",
+  "category": "productivity",
+  "subcategory": "Personal site",
+  "useCase": "web-development",
+  "icon": "assets/icon.svg",
+  "screenshots": ["assets/shot-1.png"],
+  "deploy": "out/one-page-site",
+  "setup": "Your agent asks for your name, a one-line tagline, and the links you want on the page, all in one message. No keys or accounts are needed, and the page starts in the plain theme unless you pick night or paper."
+}
