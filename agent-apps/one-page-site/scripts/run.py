@@ -13,7 +13,7 @@ APP = Path(__file__).resolve().parent.parent
 PROJECT = Path.cwd()
 INPUTS = PROJECT / "one-page-site.inputs.json"
 OUT = PROJECT / "out" / "one-page-site"
-THEMES = ("plain", "night", "paper")
+THEMES = ("plain", "night", "paper", "dusk")
 
 
 def read_inputs():

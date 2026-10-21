@@ -2,7 +2,7 @@
 
 ## What this makes
 
-A one-page personal site at `out/one-page-site/index.html` in your project folder: your name, a tagline, up to eight links, and up to four short sections, in one of three themes.
+A one-page personal site at `out/one-page-site/index.html` in your project folder: your name, a tagline, up to eight links, and up to four short sections, in one of four themes.
 
 ## Run
 
@@ -26,7 +26,7 @@ Write `one-page-site.inputs.json` in the project folder, never in this folder. C
 
 - `name`: the person's name, shown as the page title.
 - `tagline`: one line under the name.
-- `theme`: `plain`, `night`, or `paper`; `plain` when left out.
+- `theme`: `plain`, `night`, `paper`, or `dusk`; `plain` when left out.
 - `links`: up to eight `{ "label", "url" }` pairs, shown as a row of links.
 - `sections`: up to four `{ "heading", "text" }` blocks, shown under the links.
 
