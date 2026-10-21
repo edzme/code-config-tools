@@ -13,4 +13,4 @@ body { font-family: Georgia, "Iowan Old Style", serif; background: linear-gradie
 .tagline, footer { color: #e4b9a8; }
 .links a { background: rgba(255, 214, 190, .12); color: #fff3ec; border: 1px solid rgba(255, 214, 190, .35); }
 .links a:hover { background: rgba(255, 214, 190, .22); }
-h2 { color: #ffb38a; }
+h2 { color: #ffc59a; padding-bottom: .25rem; border-bottom: 1px solid rgba(255, 197, 154, .35); }
