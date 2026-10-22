@@ -1,0 +1,60 @@
+/* Ember: amber, red, and gold; peach by day, charcoal by night. Tokens only; the scenes read the --scene-* values at start. */
+:root {
+  --font-sans: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.125rem; --text-xl: 1.25rem;
+  --text-2xl: 1.5rem; --text-3xl: 2rem; --text-4xl: 3rem;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px;
+  --space-7: 48px; --space-8: 64px;
+  --radius-sm: 4px; --radius-md: 8px; --radius-lg: 16px; --radius-full: 999px;
+  --motion-fast: 120ms; --motion-base: 200ms; --motion-slow: 400ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1); --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  color-scheme: light;
+  --color-bg: #ffe8d6; --color-surface: #fff6efcc; --color-surface-2: #ffd9bf;
+  --color-text: #3a0a10; --color-muted: #7a3a2c; --color-accent: #e2370f;
+  --color-on-accent: #ffffff; --color-danger: #b3001b; --color-ok: #2f7a3a;
+  --color-border: #3a0a1026;
+  --shadow-1: 0 1px 2px #3a0a101f, 0 4px 16px #3a0a1014; --shadow-2: 0 8px 40px #3a0a1029;
+  --scene-bg: #ffe8d6; --scene-bg-2: #ffc9a3;
+  --scene-1: #c41e0c; --scene-2: #ff7a00; --scene-3: #7a0a3a;
+  --scene-glow: 0.2; --scene-additive: 0; --scene-grain: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --color-bg: #120604; --color-surface: #2a0f08b3; --color-surface-2: #3a160b;
+    --color-text: #fff1e4; --color-muted: #d9a98a; --color-accent: #ff8a2a;
+    --color-on-accent: #1a0702; --color-danger: #ff4d3d; --color-ok: #9be36b;
+    --color-border: #fff1e426;
+    --shadow-1: 0 1px 2px #00000066, 0 4px 16px #00000059; --shadow-2: 0 8px 40px #000000a6;
+    --scene-bg: #120604; --scene-bg-2: #3a0c06;
+    --scene-1: #ffb02e; --scene-2: #ff3d2e; --scene-3: #ffe08a;
+    --scene-glow: 1; --scene-additive: 1; --scene-grain: 0.08;
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: #ffe8d6; --color-surface: #fff6efcc; --color-surface-2: #ffd9bf;
+  --color-text: #3a0a10; --color-muted: #7a3a2c; --color-accent: #e2370f;
+  --color-on-accent: #ffffff; --color-danger: #b3001b; --color-ok: #2f7a3a;
+  --color-border: #3a0a1026;
+  --shadow-1: 0 1px 2px #3a0a101f, 0 4px 16px #3a0a1014; --shadow-2: 0 8px 40px #3a0a1029;
+  --scene-bg: #ffe8d6; --scene-bg-2: #ffc9a3;
+  --scene-1: #c41e0c; --scene-2: #ff7a00; --scene-3: #7a0a3a;
+  --scene-glow: 0.2; --scene-additive: 0; --scene-grain: 0;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #120604; --color-surface: #2a0f08b3; --color-surface-2: #3a160b;
+  --color-text: #fff1e4; --color-muted: #d9a98a; --color-accent: #ff8a2a;
+  --color-on-accent: #1a0702; --color-danger: #ff4d3d; --color-ok: #9be36b;
+  --color-border: #fff1e426;
+  --shadow-1: 0 1px 2px #00000066, 0 4px 16px #00000059; --shadow-2: 0 8px 40px #000000a6;
+  --scene-bg: #120604; --scene-bg-2: #3a0c06;
+  --scene-1: #ffb02e; --scene-2: #ff3d2e; --scene-3: #ffe08a;
+  --scene-glow: 1; --scene-additive: 1; --scene-grain: 0.08;
+}

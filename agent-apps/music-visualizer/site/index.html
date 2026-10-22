@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Music Visualizer</title>
+  <meta name="description" content="Your music turned into a living scene that breathes with the beat.">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="preload" href="./fonts/bricolage-grotesque-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./theme.css" id="theme-link">
+  <link rel="stylesheet" href="./styles/base.css">
+  <link rel="stylesheet" href="./styles/layout.css">
+  <script src="./config.js"></script>
+  <script src="./boot.js"></script>
+  <script type="importmap">
+  { "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/addons/" } }
+  </script>
+  <script type="module" src="./game/main.js"></script>
+</head>
+<body>
+  <canvas class="stage" id="stage-gl" aria-label="Visualizer"></canvas>
+  <canvas class="stage" id="stage-flat" aria-label="Visualizer" hidden></canvas>
+  <div class="veil" aria-hidden="true"></div>
+
+  <section class="now" aria-live="polite">
+    <p class="now-list" id="now-list"></p>
+    <h1 class="now-title" id="now-title">Music Visualizer</h1>
+    <p class="now-artist" id="now-artist"></p>
+  </section>
+
+  <header class="top chrome">
+    <p class="brand" id="brand">Music Visualizer</p>
+    <nav class="scenes" aria-label="Scenes">
+      <button type="button" class="seg" data-scene="terrain" aria-pressed="false" title="Terrain (1)">Terrain</button>
+      <button type="button" class="seg" data-scene="orb" aria-pressed="false" title="Orb (2)">Orb</button>
+      <button type="button" class="seg" data-scene="tunnel" aria-pressed="false" title="Tunnel (3)">Tunnel</button>
+      <button type="button" class="seg" data-scene="rings" aria-pressed="false" title="Rings (4)">Rings</button>
+    </nav>
+    <div class="tools">
+      <button type="button" class="icon-btn" id="palette-btn" aria-label="Change colors" title="Change colors">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="swatches"><circle cx="8.6" cy="9" r="5" class="swatch-1"/><circle cx="15.4" cy="9" r="5" class="swatch-2"/><circle cx="12" cy="15.2" r="5" class="swatch-3"/></svg>
+      </button>
+      <button type="button" class="icon-btn" id="scheme-btn" aria-label="Switch to light" title="Light or dark">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="when-dark"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="when-light"><path d="M19.5 14.6A8 8 0 0 1 9.4 4.5a8 8 0 1 0 10.1 10.1z"/></svg>
+      </button>
+      <button type="button" class="icon-btn" id="full-btn" aria-label="Full screen" title="Full screen (F)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <footer class="transport chrome">
+    <div class="deck">
+      <button type="button" class="icon-btn" id="prev-btn" aria-label="Previous song" title="Previous (Left arrow)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14" /><path d="M18 5.5v13L8.5 12z" class="fill"/></svg>
+      </button>
+      <button type="button" class="play" id="play-btn" aria-label="Play">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="when-paused"><path d="M8 5.2v13.6L19 12z" class="fill"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="when-playing"><path d="M7.5 5h3v14h-3zM13.5 5h3v14h-3z" class="fill"/></svg>
+        <span class="play-label">Play</span>
+      </button>
+      <button type="button" class="icon-btn" id="next-btn" aria-label="Next song" title="Next (Right arrow)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14" /><path d="M6 5.5v13L15.5 12z" class="fill"/></svg>
+      </button>
+      <button type="button" class="source-btn" id="source-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="source-panel">
+        <span id="source-label">Songs</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg>
+      </button>
+    </div>
+    <p class="status" id="status" role="status"></p>
+    <div class="panel" id="source-panel" role="dialog" aria-label="Sound source" hidden>
+      <fieldset class="sources">
+        <legend>Listen to</legend>
+        <label class="source-option"><input type="radio" name="source" value="songs" checked>
+          <span><strong>Songs</strong><small id="songs-note">The songs on this page</small></span></label>
+        <label class="source-option" id="mic-option"><input type="radio" name="source" value="mic">
+          <span><strong>Microphone</strong><small>Whatever is playing in the room</small></span></label>
+        <label class="source-option" id="tab-option"><input type="radio" name="source" value="tab">
+          <span><strong>Tab audio</strong><small>Music from another browser tab</small></span></label>
+      </fieldset>
+      <label class="sensitivity">
+        <span class="sens-row"><span>Sensitivity</span><output id="sens-out" for="sens">1.0</output></span>
+        <input type="range" id="sens" min="0.5" max="2" step="0.05" value="1">
+      </label>
+    </div>
+  </footer>
+</body>
+</html>

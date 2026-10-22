@@ -1,0 +1,17 @@
+{
+  "id": "01a1622d-16bb-702f-b256-b6f9d2d39a0c",
+  "version": "2026-10-21",
+  "name": "Music Visualizer",
+  "shortDescription": "Your music turned into a living 3D scene that breathes with the beat.",
+  "description": "A full-screen page that plays your own songs and turns them into a scene that moves with the music: a neon landscape built from the sound, a glowing orb that swells with the bass, a tunnel whose rings pulse with every kick, or a ring of light around the waveform. It can also listen to the microphone, or on a computer to music playing in another browser tab. Pick from three color themes, each with a light and a dark look. Tap once to hide the controls and let it run on a phone propped on a desk, a wall screen, or a laptop at a party. Your songs stay in your project folder and on the page you host; nothing is uploaded anywhere else.",
+  "category": "music",
+  "subcategory": "Visualizer",
+  "useCase": "animation",
+  "icon": "assets/icon.svg",
+  "screenshots": [
+    "assets/shot-1.png",
+    "assets/shot-2.png"
+  ],
+  "deploy": "out/music-visualizer",
+  "setup": "Your agent asks three things in one message: which songs on this computer to put on the page (a folder or a few files; MP3, M4A, WAV, OGG, and FLAC all work), what the page should be called, and which colors you want: neon, ember, or mono. It can also ask which scene the page opens on (terrain, orb, tunnel, or rings) and how hard the scenes should react. With no songs named, the page plays a short demo track. No keys or accounts are needed. Your songs are copied into the page's folder in your project and go only where you host that page."
+}

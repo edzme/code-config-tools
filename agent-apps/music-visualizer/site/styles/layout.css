@@ -1,0 +1,562 @@
+/* The stage, the kinetic song title, and the chrome around them. Structure only; colors are tokens. */
+.stage {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+.veil {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-fast) var(--ease-out);
+}
+
+.veil.on {
+  opacity: 1;
+}
+
+body.chrome-off {
+  cursor: none;
+}
+
+.chrome {
+  transition-property: opacity, transform;
+  transition-duration: var(--motion-slow);
+  transition-timing-function: var(--ease-out);
+}
+
+body.chrome-off .chrome {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.chrome-off .top {
+  transform: translateY(-8px);
+}
+
+body.chrome-off .transport {
+  transform: translateY(8px);
+}
+
+/* Top bar: the page's name, the scene switcher, and the tools. */
+.top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-3);
+  padding: max(env(safe-area-inset-top), var(--space-5)) max(env(safe-area-inset-right), var(--space-6)) 0
+    max(env(safe-area-inset-left), var(--space-6));
+  pointer-events: none;
+}
+
+.top > * {
+  pointer-events: auto;
+}
+
+.brand {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  font-stretch: 82%;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  justify-self: start;
+  max-width: 100%;
+}
+
+.scenes {
+  display: flex;
+  gap: 2px;
+  padding: var(--space-1);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-1);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.seg {
+  min-height: 36px;
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition-property: background-color, color;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: ease;
+}
+
+.seg[aria-pressed="true"] {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.seg:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .seg[aria-pressed="false"]:hover {
+    background: var(--color-surface-2);
+  }
+}
+
+.tools {
+  display: flex;
+  gap: var(--space-2);
+  justify-self: end;
+}
+
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-1);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  transition-property: transform, background-color;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-out);
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-btn:active,
+.play:active,
+.seg:active,
+.source-btn:active {
+  transform: scale(0.96);
+}
+
+/* The colors button shows the theme's own three scene colors, so it never reads as a second light-or-dark switch. */
+.swatches circle {
+  stroke: var(--color-surface);
+  stroke-width: 1.4;
+  fill-opacity: 0.92;
+}
+
+.swatches .swatch-1 {
+  fill: var(--scene-1);
+}
+
+.swatches .swatch-2 {
+  fill: var(--scene-2);
+}
+
+.swatches .swatch-3 {
+  fill: var(--scene-3);
+}
+
+body.scheme-light #scheme-btn .when-dark,
+body.scheme-dark #scheme-btn .when-light {
+  display: none;
+}
+
+/* The kinetic song title: weight and width follow the bass and mids, and it swells a hair on each beat. */
+.now {
+  position: fixed;
+  left: max(env(safe-area-inset-left), var(--space-6));
+  bottom: max(env(safe-area-inset-bottom), var(--space-6));
+  max-width: min(62vw, 980px);
+  pointer-events: none;
+}
+
+.now-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6.4vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  font-weight: calc(560 + var(--bass, 0) * 240);
+  font-stretch: calc(80% + var(--mid, 0) * 20%);
+  text-wrap: balance;
+  transform-origin: 0 100%;
+  transform: scale(calc(1 + var(--pulse, 0) * 0.05 + var(--drop, 0) * 0.07));
+  text-shadow:
+    0 2px 32px var(--color-bg),
+    0 0 calc(12px + var(--drop, 0) * 36px)
+      color-mix(in srgb, var(--color-accent) calc(var(--pulse, 0) * 45% + var(--drop, 0) * 40%), transparent);
+}
+
+.now-artist {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-xl);
+  font-weight: 500;
+  color: var(--color-muted);
+  text-shadow: 0 1px 16px var(--color-bg);
+}
+
+.now.swap .now-title,
+/* The playlist name rides above the title on a phone, where the top row holds only the scenes and tools. */
+.now-list {
+  display: none;
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  text-shadow: 0 1px 16px var(--color-bg);
+}
+
+.now.swap .now-artist {
+  opacity: 0;
+}
+
+.now-title,
+.now-artist {
+  transition: opacity var(--motion-base) var(--ease-out);
+}
+
+/* Transport: previous, play, next, and where the sound comes from. */
+.transport {
+  position: fixed;
+  right: max(env(safe-area-inset-right), var(--space-6));
+  bottom: max(env(safe-area-inset-bottom), var(--space-6));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+.deck {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-2);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.deck .icon-btn {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.play {
+  height: 52px;
+  min-width: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-5) 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-weight: 700;
+  font-size: var(--text-md);
+  transition-property: transform;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-out);
+}
+
+.play svg {
+  width: 22px;
+  height: 22px;
+}
+
+body.is-playing .play .when-paused,
+body:not(.is-playing) .play .when-playing {
+  display: none;
+}
+
+.source-btn {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 var(--space-3) 0 var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.source-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--motion-base) var(--ease-out);
+}
+
+.source-btn[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.status {
+  margin: 0;
+  padding: 0 var(--space-3);
+  max-width: 340px;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  text-align: right;
+  text-wrap: pretty;
+  text-shadow: 0 1px 12px var(--color-bg);
+}
+
+.status:empty {
+  display: none;
+}
+
+.status.error {
+  color: var(--color-danger);
+}
+
+.panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + var(--space-3));
+  width: min(320px, calc(100vw - 2 * var(--space-4)));
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-2);
+  transform-origin: 100% 100%;
+  transition-property: opacity, transform, display;
+  transition-duration: var(--motion-base);
+  transition-timing-function: var(--ease-out);
+  transition-behavior: allow-discrete;
+}
+
+@starting-style {
+  .panel {
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+  }
+}
+
+.sources {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.sources legend {
+  padding: var(--space-1) var(--space-2) var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.source-option {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 52px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.source-option:has(input:checked) {
+  background: var(--color-surface);
+}
+
+.source-option input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.source-option strong {
+  display: block;
+  font-weight: 650;
+}
+
+.source-option small {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.sensitivity {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.sens-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.sens-row output {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+}
+
+.sensitivity input {
+  width: 100%;
+  height: 28px;
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+/* Phones and narrow windows: the switcher gets its own row and the transport spans the width. */
+@media (max-width: 767px) {
+  .top {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "scenes tools";
+    column-gap: var(--space-1);
+    padding: max(env(safe-area-inset-top), var(--space-3)) max(env(safe-area-inset-right), var(--space-3)) 0
+      max(env(safe-area-inset-left), var(--space-3));
+  }
+
+  .brand {
+    display: none;
+  }
+
+  .tools {
+    grid-area: tools;
+    gap: var(--space-1);
+  }
+
+  .tools .icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .scenes {
+    grid-area: scenes;
+    justify-self: stretch;
+  }
+
+  .seg {
+    flex: 1 1 auto;
+    min-height: 30px;
+    padding: 0 var(--space-1);
+  }
+
+  .now-list {
+    display: block;
+  }
+
+  .transport {
+    left: max(env(safe-area-inset-left), var(--space-4));
+    right: max(env(safe-area-inset-right), var(--space-4));
+    bottom: max(env(safe-area-inset-bottom), var(--space-4));
+    align-items: stretch;
+  }
+
+  .deck {
+    justify-content: space-between;
+  }
+
+  .play {
+    flex: 1;
+    max-width: 160px;
+  }
+
+  .status {
+    text-align: center;
+    max-width: none;
+  }
+
+  .now {
+    left: max(env(safe-area-inset-left), var(--space-5));
+    right: max(env(safe-area-inset-right), var(--space-5));
+    bottom: calc(max(env(safe-area-inset-bottom), var(--space-4)) + 84px);
+    max-width: none;
+  }
+
+  .now-title {
+    font-size: clamp(2.5rem, 12.5vw, 4rem);
+  }
+
+  .now-artist {
+    font-size: var(--text-lg);
+    margin-top: var(--space-2);
+  }
+
+  body.chrome-off .now {
+    bottom: max(env(safe-area-inset-bottom), var(--space-6));
+  }
+}
+
+/* A phone on its side: one compact row at the top, the title kept small. */
+@media (max-height: 500px) and (orientation: landscape) {
+  .top {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: none;
+    padding-top: max(env(safe-area-inset-top), var(--space-3));
+  }
+
+  .brand,
+  .tools,
+  .scenes {
+    grid-area: auto;
+  }
+
+  .scenes {
+    justify-self: center;
+  }
+
+  .now-title {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+
+  .now {
+    bottom: max(env(safe-area-inset-bottom), var(--space-4));
+    right: auto;
+    max-width: 50vw;
+  }
+
+  .transport {
+    left: auto;
+    right: max(env(safe-area-inset-right), var(--space-4));
+    bottom: max(env(safe-area-inset-bottom), var(--space-3));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .now-title {
+    transform: none;
+    font-weight: 640;
+    font-stretch: 88%;
+  }
+
+  body.chrome-off .top,
+  body.chrome-off .transport {
+    transform: none;
+  }
+}

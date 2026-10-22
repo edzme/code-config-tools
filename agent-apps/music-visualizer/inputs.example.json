@@ -1,0 +1,14 @@
+{
+  "title": "Friday Night",
+  "tracks": [],
+  "scene": "orb",
+  "theme": "neon",
+  "sensitivity": 1,
+  "_notes": {
+    "title": "The page's name, shown in the corner and the browser tab.",
+    "tracks": "Your songs, in play order: [{\"file\": \"music/song.mp3\", \"title\": \"Song name\", \"artist\": \"Artist\"}]. Each file path is relative to this inputs file; MP3, M4A, WAV, OGG, and FLAC all play in Chrome. Leave the list empty to get a 24-second demo track.",
+    "scene": "The scene the page opens on: terrain, orb, tunnel, or rings.",
+    "theme": "The colors: neon, ember, or mono. Each has a light and a dark look that follows the device.",
+    "sensitivity": "How hard the scenes react, from 0.5 (calm) to 2 (wild). 1 suits most music."
+  }
+}

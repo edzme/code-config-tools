@@ -1,0 +1,60 @@
+/* Neon: electric blue, hot pink, and cyan; ice-lavender by day, deep indigo by night. Tokens only; the scenes read the --scene-* values at start. */
+:root {
+  --font-sans: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.125rem; --text-xl: 1.25rem;
+  --text-2xl: 1.5rem; --text-3xl: 2rem; --text-4xl: 3rem;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px;
+  --space-7: 48px; --space-8: 64px;
+  --radius-sm: 4px; --radius-md: 8px; --radius-lg: 16px; --radius-full: 999px;
+  --motion-fast: 120ms; --motion-base: 200ms; --motion-slow: 400ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1); --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  color-scheme: light;
+  --color-bg: #e9ecff; --color-surface: #ffffffcc; --color-surface-2: #dfe3fb;
+  --color-text: #110d2e; --color-muted: #4d4a72; --color-accent: #ff1f8e;
+  --color-on-accent: #ffffff; --color-danger: #d0103a; --color-ok: #0b8a5f;
+  --color-border: #110d2e26;
+  --shadow-1: 0 1px 2px #110d2e1f, 0 4px 16px #110d2e14; --shadow-2: 0 8px 40px #110d2e29;
+  --scene-bg: #e9ecff; --scene-bg-2: #c9d0ff;
+  --scene-1: #2b3cff; --scene-2: #ff1f8e; --scene-3: #00b3d6;
+  --scene-glow: 0.22; --scene-additive: 0; --scene-grain: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --color-bg: #06051a; --color-surface: #120f33b3; --color-surface-2: #1c1847;
+    --color-text: #f3f1ff; --color-muted: #a9a4d6; --color-accent: #ff3fb4;
+    --color-on-accent: #14031f; --color-danger: #ff5a7a; --color-ok: #3ef2a8;
+    --color-border: #f3f1ff26;
+    --shadow-1: 0 1px 2px #00000066, 0 4px 16px #00000059; --shadow-2: 0 8px 40px #000000a6;
+    --scene-bg: #06051a; --scene-bg-2: #1d0b3f;
+    --scene-1: #3ef2ff; --scene-2: #ff3fb4; --scene-3: #8b5bff;
+    --scene-glow: 1; --scene-additive: 1; --scene-grain: 0.07;
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: #e9ecff; --color-surface: #ffffffcc; --color-surface-2: #dfe3fb;
+  --color-text: #110d2e; --color-muted: #4d4a72; --color-accent: #ff1f8e;
+  --color-on-accent: #ffffff; --color-danger: #d0103a; --color-ok: #0b8a5f;
+  --color-border: #110d2e26;
+  --shadow-1: 0 1px 2px #110d2e1f, 0 4px 16px #110d2e14; --shadow-2: 0 8px 40px #110d2e29;
+  --scene-bg: #e9ecff; --scene-bg-2: #c9d0ff;
+  --scene-1: #2b3cff; --scene-2: #ff1f8e; --scene-3: #00b3d6;
+  --scene-glow: 0.22; --scene-additive: 0; --scene-grain: 0;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #06051a; --color-surface: #120f33b3; --color-surface-2: #1c1847;
+  --color-text: #f3f1ff; --color-muted: #a9a4d6; --color-accent: #ff3fb4;
+  --color-on-accent: #14031f; --color-danger: #ff5a7a; --color-ok: #3ef2a8;
+  --color-border: #f3f1ff26;
+  --shadow-1: 0 1px 2px #00000066, 0 4px 16px #00000059; --shadow-2: 0 8px 40px #000000a6;
+  --scene-bg: #06051a; --scene-bg-2: #1d0b3f;
+  --scene-1: #3ef2ff; --scene-2: #ff3fb4; --scene-3: #8b5bff;
+  --scene-glow: 1; --scene-additive: 1; --scene-grain: 0.07;
+}
