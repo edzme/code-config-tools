@@ -8,7 +8,9 @@
   "subcategory": "Personal site",
   "useCase": "web-development",
   "icon": "assets/icon.svg",
-  "screenshots": ["assets/shot-1.png"],
+  "screenshots": [
+    "assets/shot-1.png"
+  ],
   "deploy": "out/one-page-site",
   "setup": "Your agent asks for your name, a one-line tagline, and the links you want on the page, all in one message. No keys or accounts are needed, and the page starts in the plain theme unless you pick night, paper, or dusk."
 }

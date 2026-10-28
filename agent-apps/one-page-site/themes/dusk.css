@@ -9,8 +9,8 @@ section { margin-bottom: 1.75rem; }
 h2 { margin: 0 0 .35rem; font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; }
 section p { margin: 0; line-height: 1.6; }
 footer { padding: 1.5rem; text-align: center; font-size: .85rem; }
-body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #1b1530; color: #efe9ff; }
-.tagline, footer { color: #a99cc8; }
-.links a { background: #2a2246; color: #efe9ff; border: 1px solid #3b3160; }
-.links a:hover { background: #362d58; }
-h2 { color: #ffb86b; }
+body { font-family: Georgia, "Iowan Old Style", serif; background: linear-gradient(180deg, #2b1d3a 0%, #4a2c4f 55%, #7a3f4c 100%); color: #fbe9e0; }
+.tagline, footer { color: #e4b9a8; }
+.links a { background: rgba(255, 214, 190, .12); color: #fff3ec; border: 1px solid rgba(255, 214, 190, .35); }
+.links a:hover { background: rgba(255, 214, 190, .22); }
+h2 { color: #ffc59a; padding-bottom: .25rem; border-bottom: 1px solid rgba(255, 197, 154, .35); }
